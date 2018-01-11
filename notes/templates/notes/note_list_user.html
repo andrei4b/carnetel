@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block note_list_block %}
+	
+      {% if note_list %}
+        {% for note in note_list %}
+          <form action="{% url 'update-note' note.pk %}">
+            <button type="submit" class="tablinks" value="{{ note.title }}" />{{ note.title }}
+          </form>
+    
+        {% endfor %}
+      {% else %}
+         <p>No notes</p>
+      {% endif %}
+{% endblock %}
+
+{% block note_view_block %}
+
+	<textarea class="textbox1">Welcome to Carnețel, {{ user.get_username }}!</textarea>
+  			
+  			
+          <!-- <textarea id="textbox">text alt_content
+          </textarea> -->
+     
+{% endblock %}
+
+{% block content %}
+
+
+{% endblock %}

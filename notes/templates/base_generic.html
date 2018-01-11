@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block title %}<title>Carnețel</title>{% endblock %}
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--<link rel="stylesheet" href="codemirror/lib/codemirror.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}"> 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row" id ="top_row">
+        <div class="col-md-4" id="title">
+            <h1>Carnețel</h1>
+            {% if user.is_authenticated %}
+              <p>user: <strong> {{ user.get_username }} </strong> <a href="{% url 'logout'%}?next={{ '/' }}"> (logout)</a></p>
+            {% else %}
+              <!--<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   --  >
+             {% endif %} 
+        </div>   
+        <div class="col-md-8" id="note_title">
+          {% block note_title %} 
+          
+          {% endblock %}
+        </div>
+    </div>
+
+    <div class="row" id="middle_row">
+      <div class="tab col-md-4">
+        {% block note_list_block %}
+        
+        {% endblock %}
+      </div>
+
+      <div class="tabcontent col-md-8">
+        {% block note_view_block %}
+      
+        {% endblock %}
+      </div>
+    </div>
+
+    <div class="row" id="bottom_row">
+      {% block bottom_row %}
+        <div class="col-md-4">
+          <form action="{% url 'note_create' %}">
+            <button type="submit" class="new_button" value="New" />New</button>
+          </form>
+        </div>
+
+        <div class="col-md-8">
+        </div>
+      {% endblock %}      
+    </div>
+
+  </div>
+
+  {% block content %}{% endblock %}
+
+ <!-- {% load static %}
+  <script type="text/javascript" src="{% static 'js/script.js' %}" ></script> -->
+  </body>
+
+</html>

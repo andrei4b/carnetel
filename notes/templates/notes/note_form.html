@@ -1,0 +1,49 @@
+{% extends "base_generic.html" %}
+
+{% block note_list_block %}
+
+      {% if notes %}
+        {% for note in notes %}
+          <form action="{% url 'update-note' note.pk %}">
+            <button type="submit" class="tablinks" value="{{ note.title }}" />{{ note.title }}
+          </form>
+    
+        {% endfor %}
+      {% else %}
+         <p>No notes</p>
+      {% endif %}
+{% endblock %}
+
+{% block note_view_block %}
+
+  <form action="" method="post" id="update_form">
+        {% csrf_token %}
+        {{ form.title }}
+        {{ form.content }}        
+        <input class="option_button" type="submit" value="Save"  />
+  </form>
+  
+  <!--
+  <textarea id="titlebox">{{ note.title }}</textarea>
+  <textarea id="textbox">{{ note.content }}</textarea>
+  <button class=option_button id="saveNote" >Save</button>
+  <button class=option_button id="deleteNote" >Delete</button>
+  -->
+  
+{% endblock %}
+
+{% block bottom_row %}
+    <div class="col-md-4">
+          
+    </div>
+
+    <div class="col-md-4">
+          
+    </div>
+    
+    <div class="col-md-4" id="option_buttons_div">
+      
+      
+    </div>
+ 
+{% endblock %}
