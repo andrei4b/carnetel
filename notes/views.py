@@ -104,7 +104,7 @@ class NoteCreate(CreateView):
         note.owner = self.request.user
         note.date_created = datetime.date.today()
         note.save()
-        return HttpResponseRedirect(reverse('my-notes'))
+        return HttpResponseRedirect(reverse('update-note', kwargs={'pk': note.pk}))
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context

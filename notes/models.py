@@ -24,7 +24,7 @@ class Note(models.Model):
     title = models.CharField(max_length=200)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     date_created = models.DateField(null=True, blank=True)
-    content = models.TextField(max_length=1000, help_text="Enter text here")
+    content = models.TextField(help_text="Enter text here")
     tag = models.ManyToManyField(Tag, help_text="Select a tag for this note")
     
     def __str__(self):

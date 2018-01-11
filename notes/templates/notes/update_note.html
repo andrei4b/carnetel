@@ -3,9 +3,17 @@
 {% block note_list_block %}
 
       {% if notes %}
-        {% for note in notes %}
-          <form action="{% url 'update-note' note.pk %}">
-            <button type="submit" class="tablinks" value="{{ note.title }}" />{{ note.title }}
+        {% for n in notes %}
+          <form action="{% url 'update-note' n.pk %}">
+            <button type="submit"  
+
+            {% if n.pk == note.pk %} 
+              class="tablinks active"
+            {% else %}
+              class="tablinks"
+            {% endif %}
+
+            value="{{ n.title }}" />{{ n.title }}
           </form>
     
         {% endfor %}
