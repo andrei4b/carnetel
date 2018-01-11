@@ -1,0 +1,1 @@
+web: gunicorn carnetel.wsgi --log-file -
